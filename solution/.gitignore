@@ -1,0 +1,10 @@
+node_modules/
+npm-debug.log
+.tmp
+.DS_Store
+.idea/
+*.swp
+connect.js
+bundle.js
+process.env
+env.sh
