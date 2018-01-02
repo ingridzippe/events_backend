@@ -10,6 +10,7 @@ var Event = require('../models/models.js').Event;
 var User = require('../models/models.js').User;
 var Reaction = require('../models/models.js').Reaction;
 var Peoplelike = require('../models/models.js').Peoplelike;
+var Update = require('../models/models.js').Update;
 // var mongoose = require('mongoose');
 
 const S3_BUCKET = process.env.S3_BUCKET;
@@ -123,6 +124,75 @@ router.post('/createreaction', function(req, res, next) {
     res.json({'error': error})
   })
 });
+
+router.get('/updates', function(req, res, next) {
+  Update.findAll({
+    // include: [
+    //   { model: User, },
+    // ],
+    order: [['createdAt', 'DESC']]
+  })
+  .then(function(updates) {
+    // var arr = Object.keys(updates);
+    // how to make an array of promises
+    var promises = updates.map(update => {
+      return User.find({where: {id: update.people1}})
+      .then(function(userfound){
+        var u = {};
+        console.log('USERFOUND ID', userfound.id);
+        console.log('USERFOUND ID', userfound.username);
+        u['id'] = userfound.people1;
+        u['username'] = userfound.username;
+        u['fullname'] = userfound.fullname;
+        console.log('u', u);
+        return u;
+      })
+    })
+    return Promise.all(promises)
+  })
+  .then(function(matches){
+    console.log('makes it here? match')
+    res.json({
+      success: true,
+      updates: matches
+    })
+  })
+  .catch(function(error) {
+    console.log('there was an error loading events', error);
+  })
+});
+
+
+router.post('/createupdate', function(req, res, next) {
+  console.log('gets here')
+  Update.find({where: {userid: req.user.id, people1: req.body.people1 }})
+  .then(function(updatefound){
+    if (updatefound) {
+      res.json({'update': 'update found'})
+    } else {
+
+      Update.create({
+        userid: req.user.id,
+        people1: req.body.people1,
+        people2: req.body.people2,
+        events: req.body.events,
+      })
+      .then(function(update){
+        res.json({'success': true, 'update': update})
+      })
+      .catch(function(error){
+        console.log('there was an error', error)
+        res.json({'error': error})
+      })
+
+    }
+  })
+  .catch(function(error){
+    console.log('there was an error', error)
+    res.json({'error': error})
+  })
+});
+
 
 // postgres SQL
 router.get('/events', function(req, res, next) {

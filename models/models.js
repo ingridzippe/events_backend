@@ -67,6 +67,19 @@ sequelize
   //   console.log('whoops this thing errored', err)
   // });
 
+  // sequelize.query(`create table updates (
+  //     id int primary key not null,
+  //     message varchar,
+  //     people1 int,
+  //     people2 int,
+  //     events int );`)
+  // .then(function(result) {
+  //   console.log('RESULT', result);
+  // })
+  // .catch(function(err) {
+  //   console.log('whoops this thing errored', err)
+  // });
+
   // sequelize.query(`create table peoplelikes (
   //     id int primary key not null,
   //     vibe varchar,
@@ -114,6 +127,30 @@ sequelize
   //   console.log('whoops this thing errored', err)
   // });
 
+
+
+  var Update = sequelize.define('update', {
+    userid: {
+      type: Sequelize.INTEGER,
+      allowNull: true
+    },
+    message: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    people1: {
+      type: Sequelize.INTEGER,
+      allowNull: true
+    },
+    events: {
+      type: Sequelize.INTEGER,
+      allowNull: true
+    },
+    createdAt: {
+     type: Sequelize.DATE,
+     allowNull: true
+    },
+  });
 
 
   var User = sequelize.define('user', {
@@ -277,12 +314,16 @@ sequelize
   User.hasMany(Peoplelike, {foreignKey: 'userid'})
   Peoplelike.belongsTo(User, {foreignKey: 'userid'})
 
+  User.hasMany(Update, {foreignKey: 'userid'})
+  Update.belongsTo(User, {foreignKey: 'userid'})
+
   module.exports = {
     // Export models here
     // YOUR CODE HERE
     User,
     Event,
     Reaction,
+    Update,
     Peoplelike,
     sequelize,
     Sequelize
