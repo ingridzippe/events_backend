@@ -237,6 +237,46 @@ router.get('/reactions', function(req, res, next) {
   })
 });
 
+router.get('/reactions/:id', function(req, res, next) {
+  Reaction.findAll({
+    where: {userid: req.params.id},
+    include: [
+      { model: User, },
+      { model: Event }
+    ],
+    order: [['createdAt', 'DESC']]
+  })
+  .then(function(reactions) {
+    res.json({
+      success: true,
+      reactions: reactions
+    })
+  })
+  .catch(function(error) {
+    console.log('there was an error loading events', error);
+  })
+});
+
+router.get('/myreactions', function(req, res, next) {
+  Reaction.findAll({
+    where: {userid: req.user.id},
+    include: [
+      { model: User, },
+      { model: Event }
+    ],
+    order: [['createdAt', 'DESC']]
+  })
+  .then(function(reactions) {
+    res.json({
+      success: true,
+      reactions: reactions
+    })
+  })
+  .catch(function(error) {
+    console.log('there was an error loading events', error);
+  })
+});
+
 router.post('/deletereaction', function(req, res, next) {
   Reaction.destroy({ where: {id: 2}});
 })

@@ -16,23 +16,23 @@ const sequelize = new Sequelize('eventsapp', null, null, {
   },
 });
 
-// const sequelize = new Sequelize('process.env.AWSDB', 'process.env.AWSDBUSERNAME', 'process.env.AWSDBPASSWORD', {
-//   // host: 'postgres-eventsapp.cppczcupjsh9.us-east-1.rds.amazonaws.com:5432',
-//   // host: 'postgres-eventsapp.cppczcupjsh9.us-east-1.rds.amazonaws.com',
-//   // port: '5432',
-//   // dialect: 'postgres',
-//   database: 'PostgressEvents',
-//   host: 'postgres-eventsapp.cppczcupjsh9.us-east-1.rds.amazonaws.com',
-//   port: '5432',
-//   dialect: 'postgres',
-//
-//   pool: {
-//     max: 5,
-//     min: 0,
-//     acquire: 30000,
-//     idle: 10000
-//   },
-// });
+const sequelize = new Sequelize(process.env.HEROKU_DBNAME, process.env.HEROKU_USERNAME, process.env.HEROKU_PASSWORD, {
+  // host: 'postgres-eventsapp.cppczcupjsh9.us-east-1.rds.amazonaws.com:5432',
+  // host: 'postgres-eventsapp.cppczcupjsh9.us-east-1.rds.amazonaws.com',
+  // port: '5432',
+  // dialect: 'postgres',
+  database: process.env.HEROKU_DBNAME,
+  host: process.env.HEROKU_DATABASE_URL,
+  port: '5432',
+  dialect: 'postgres',
+
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
+});
 
 
 // Or you can simply use a connection uri
