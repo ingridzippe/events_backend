@@ -4,17 +4,17 @@ const Sequelize = require('sequelize');
 //   host: 'postgres-eventsapp.cppczcupjsh9.us-east-1.rds.amazonaws.com'
 // });
 
-const sequelize = new Sequelize('eventsapp', null, null, {
-  // host: 'localhost',
-  dialect: 'postgres',
-
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  },
-});
+// const sequelize = new Sequelize('eventsapp', null, null, {
+//   // host: 'localhost',
+//   dialect: 'postgres',
+//
+//   pool: {
+//     max: 5,
+//     min: 0,
+//     acquire: 30000,
+//     idle: 10000
+//   },
+// });
 
 const sequelize = new Sequelize(process.env.HEROKU_DBNAME, process.env.HEROKU_USERNAME, process.env.HEROKU_PASSWORD, {
   // host: 'postgres-eventsapp.cppczcupjsh9.us-east-1.rds.amazonaws.com:5432',
