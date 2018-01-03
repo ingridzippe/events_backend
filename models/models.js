@@ -22,7 +22,7 @@ const sequelize = new Sequelize(process.env.HEROKU_DBNAME, process.env.HEROKU_US
   // port: '5432',
   // dialect: 'postgres',
   database: process.env.HEROKU_DBNAME,
-  host: process.env.HEROKU_DATABASE_URL,
+  host: process.env.HEROKU_DBHOST,
   port: '5432',
   dialect: 'postgres',
 
