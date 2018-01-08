@@ -34,6 +34,18 @@ const sequelize = new Sequelize(process.env.HEROKU_DBNAME, process.env.HEROKU_US
   },
 });
 
+console.log('HAAAAAJKLAKALJA')
+
+// const sequelize = new Sequelize(process.env.HEROKU_DATABASE_URL);
+//   dialect: 'postgres',
+//   protocol: 'postgres',
+//   host: process.env.HEROKU_DBHOST,
+//   port: '5432',
+//   ssl: true
+// });
+
+
+
 
 // Or you can simply use a connection uri
 // const sequelize = new Sequelize('postgres-eventsapp.cppczcupjsh9.us-east-1.rds.amazonaws.com:5432');
