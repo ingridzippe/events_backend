@@ -360,7 +360,7 @@ router.post('/createpeoplelike', function(req, res, next) {
           console.log('getes insssiiide?')
           Peoplelike.create({
             userid: 1,
-            likingid: req.user.id,
+            likingid: 1,
             likedid: req.body.likedid,
             vibe: req.body.vibe
           })
