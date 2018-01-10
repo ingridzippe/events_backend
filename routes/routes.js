@@ -350,7 +350,7 @@ router.post('/createreaction', function(req, res, next) {
 
 router.post('/createpeoplelike', function(req, res, next) {
   console.log('gets here')
-  if (req.body.likedid === req.user.id) {
+  if (req.body.likedid === 200) {
     res.json({ self: 'cannot like self' })
   } else {
     Peoplelike.findAll({where: {likingid: req.user.id, likedid: req.body.likedid}})
