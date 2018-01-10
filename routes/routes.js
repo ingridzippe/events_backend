@@ -359,7 +359,7 @@ router.post('/createpeoplelike', function(req, res, next) {
         if (!like[0]) {
           console.log('getes insssiiide?')
           Peoplelike.create({
-            userid: req.user.id,
+            userid: 1,
             likingid: req.user.id,
             likedid: req.body.likedid,
             vibe: req.body.vibe
