@@ -53,7 +53,6 @@ module.exports = function (passport) {
     console.log('REQ.USER', req.user)
     res.json({
       success: true,
-      send: req.user,
       user: req.user
     });
   });
