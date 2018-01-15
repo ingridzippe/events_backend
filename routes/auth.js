@@ -50,10 +50,11 @@ module.exports = function (passport) {
 
   router.get('/login/success', function(req, res) {
     var user = _.pick(req.user, 'username', '_id');
-    console.log(req.user)
+    console.log('REQ.USER', req.user)
     res.json({
       success: true,
-      user: user
+      send: req.user,
+      user: req.user
     });
   });
 
