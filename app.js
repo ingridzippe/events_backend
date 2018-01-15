@@ -113,6 +113,7 @@ var passport = require('passport')
 
 // postgres SQL ==> attempt
 passport.use(new LocalStrategy(function(username, password, done) {
+  console.log('username is faith', username)
   models.User.findOne({where:{username: username}}).then(user => {
     if (user.dataValues.password === password){
       console.log('USER', user.dataValues);
