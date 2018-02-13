@@ -18,7 +18,7 @@ https.get(domain);
 setInterval(function() {
     console.log('set interval aAAAAAA')
     console.log('server poked');
-}, 300000); // every 5 minutes (300000)
+}, 30); // every 5 minutes (300000)
 
 
 
