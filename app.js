@@ -14,8 +14,11 @@ var flash = require('connect-flash');
 const https = require('https');
 
 setInterval(function() {
-    https.get("http://<your app name>.herokuapp.com");
+    https.get("https://whispering-savannah-32809.herokuapp.com");
+    console.log('server poked');
 }, 300000); // every 5 minutes (300000)
+
+
 
 // Transform Facebook profile because Facebook and Google profile objects look different
 // and we want to transform them into user objects that have the same set of attributes
