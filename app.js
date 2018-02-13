@@ -14,9 +14,9 @@ var flash = require('connect-flash');
 const https = require('https');
 
 const domain = 'https://whispering-savannah-32809.herokuapp.com';
+https.get(domain);
 setInterval(function() {
     console.log('set interval aAAAAAA')
-    https.get(domain);
     console.log('server poked');
 }, 300000); // every 5 minutes (300000)
 
