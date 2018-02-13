@@ -17,7 +17,7 @@ const http = require('http');
 const domain = 'https://whispering-savannah-32809.herokuapp.com';
 https.get(domain);
 setInterval(function() {
-    http.request('https://whispering-savannah-32809.herokuapp.com'), console.log("here")).end();
+    http.request('https://whispering-savannah-32809.herokuapp.com', console.log("here")).end();
     console.log('set interval aAAAAAA')
     console.log('server poked');
 }, 30); // every 5 minutes (300000)
