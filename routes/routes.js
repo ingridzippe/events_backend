@@ -277,6 +277,10 @@ router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
   var latUpperBound = Math.floor(req.params.lat + radius);
   var lonLowerBound = Math.floor(req.params.lon - radius);
   var lonUpperBound = Math.floor(req.params.lon + radius);
+  console.log(latLowerBound);
+  console.log(latUpperBound);
+  console.log(lonLowerBound);
+  console.log(lonUpperBound);
   Reaction.findAll({
     include: [
       { model: User, },
