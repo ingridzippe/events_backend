@@ -274,7 +274,7 @@ router.get('/events', function(req, res, next) {
 router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
   var lat = Math.floor(req.params.lat);
   var lon = Math.floor(req.params.lon);
-  var radius = req.params.radius;
+  var radius = Math.floor(req.params.radius);
   var latLowerBound = lat - radius;
   var latUpperBound = lat + radius;
   var lonLowerBound = lon - radius;
