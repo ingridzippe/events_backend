@@ -12,7 +12,7 @@ var Reaction = require('../models/models.js').Reaction;
 var Peoplelike = require('../models/models.js').Peoplelike;
 var Update = require('../models/models.js').Update;
 
-const Sequelize = require('sequelize');
+var Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 // var mongoose = require('mongoose');
 
