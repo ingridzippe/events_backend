@@ -162,37 +162,38 @@ passport.use(new LocalStrategy(function(username, password, done) {
 
 // var FacebookStrategy = require('passport-facebook');
 
-passport.use(new FacebookStrategy({
-  clientID: process.env.FACEBOOK_APP_ID,
-  clientSecret: process.env.FACEBOOK_APP_SECRET,
-  callbackURL: 'http://localhost:3000/fb/login/callback',
-},
-function(accessToken, refreshToken, profile, done) {
-  console.log('arrives here')
-    var u;
-    // checks if user exists
-    models.User.findOne({where:{fbid: profile.id}}).then(user=>{
-      u = user;
-      console.log('found it', user);
-    })
-    // .catch(func3tion(err){
-    //   console.log('err', err)
-    // })
-    console.log('u', u)
-    // if no user, make one
-    if(!u){
-      console.log('PROFILE PROFILE', profile)
-      models.User.create({
-        fullname: profile.displayName,
-        username: profile.id,
-        password: profile.id,
-        fbid: profile.id,
-      })
-      done(null, {token: accessToken, displayName: profile.displayName, fbId: profile.id});
-    } else {
-      done(null, user)
-    }
-
+// RECOMMENT THIS BLOCK IN
+// passport.use(new FacebookStrategy({
+//   clientID: process.env.FACEBOOK_APP_ID,
+//   clientSecret: process.env.FACEBOOK_APP_SECRET,
+//   callbackURL: 'http://localhost:3000/fb/login/callback',
+// },
+// function(accessToken, refreshToken, profile, done) {
+//   console.log('arrives here')
+//     var u;
+//     // checks if user exists
+//     models.User.findOne({where:{fbid: profile.id}}).then(user=>{
+//       u = user;
+//       console.log('found it', user);
+//     })
+//     // .catch(func3tion(err){
+//     //   console.log('err', err)
+//     // })
+//     console.log('u', u)
+//     // if no user, make one
+//     if(!u){
+//       console.log('PROFILE PROFILE', profile)
+//       models.User.create({
+//         fullname: profile.displayName,
+//         username: profile.id,
+//         password: profile.id,
+//         fbid: profile.id,
+//       })
+//       done(null, {token: accessToken, displayName: profile.displayName, fbId: profile.id});
+//     } else {
+//       done(null, user)
+//     }
+//
 
 
   // models.User.findOne({where: {fbid: '2'}})
@@ -213,7 +214,7 @@ function(accessToken, refreshToken, profile, done) {
   // .catch(function(error){
   //   console.log('there was an error', error)
   // })
-}));
+// }));
 
 // passport.use(new LocalStrategy(function(username, password, done) {
 //   // Find a user by username, if password matches call done(null, user)

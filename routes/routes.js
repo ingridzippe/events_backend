@@ -42,6 +42,56 @@ router.get('/sign-s3', function(req, res) {
     res.end();
   });
 });
+// THIS WORKS
+// https://www.eventbriteapi.com/v3/events/search?token=ZGQUVO5F3V3AXFDYRINO&q=arts
+
+// router.get('https://www.eventbriteapi.com/v3/users/me/owned_events/',
+//   headers = { "Authorization": "Bearer FL3SLC45OBKQTY3ICPZJ" },
+//   function(req, res, next) {
+//       console.log(res.json());
+//       res.json({success: true, events: events})
+//   });
+
+// var token = 'ZGQUVO5F3V3AXFDYRINO';
+// router.get('https://www.eventbriteapi.com/v3/events/search/?token='+token+'&organizer.id=8231868522&expand=venue', function(res) {
+//   if(res.events.length) {
+//     console.log(res.json());
+//     res.json({success: true, events: events})
+//   } else {
+//     console.log('no events');
+//   }
+// });
+
+// var settings = {
+//   "async": true,
+//   "crossDomain": true,
+//   "url": "https://www.eventbriteapi.com/v3/events/17920884849/?token=ZGQUVO5F3V3AXFDYRINO",
+//   "method": "GET",
+//   "headers": { "Authorization": "Bearer FL3SLC45OBKQTY3ICPZJ" }
+// }
+router.get({
+  "async": true,
+  "crossDomain": true,
+  "url": "https://www.eventbriteapi.com/v3/events/17920884849/?token=ZGQUVO5F3V3AXFDYRINO",
+  "method": "GET",
+  "headers": { "Authorization": "Bearer FL3SLC45OBKQTY3ICPZJ" }
+  }, function(req, res, next) {
+  console.log(req);
+  console.log(req.name.text);
+  console.log(req.description);
+});
+
+router.get({
+  "async": true,
+  "crossDomain": true,
+  "url": "https://www.eventbriteapi.com/v3/events/search",
+  "method": "GET",
+  "headers": { "Authorization": "Bearer FL3SLC45OBKQTY3ICPZJ" }
+  }, function(req, res, next) {
+  console.log(req);
+  console.log(req.name.text);
+  console.log(req.description);
+});
 
 router.get('/getlikes', function(req, res, next) {
   console.log('req.user.id', req.user.id)
@@ -242,7 +292,7 @@ router.get('/reactions/:id', function(req, res, next) {
     where: {userid: req.params.id},
     include: [
       { model: User, },
-      { model: Event }
+      { model: Event, where: {eventlatitude: {[Op.between]: [6, 10]}} }
     ],
     order: [['createdAt', 'DESC']]
   })
