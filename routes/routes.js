@@ -281,8 +281,6 @@ router.get('/reactions', function(req, res, next) {
       success: true,
       reactions: reactions
     })
-    console.log("UPDATED REACTIONS");
-    console.log(reactions);
   })
   .catch(function(error) {
     console.log('there was an error loading events', error);
