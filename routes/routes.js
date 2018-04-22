@@ -272,7 +272,7 @@ router.get('/reactions', function(req, res, next) {
   Reaction.findAll({
     include: [
       { model: User, },
-      { model: Event, where: {eventlatitude: {[Op.between]: [6, 10]}} }
+      { model: Event, where: {eventlatitude: 8} }
     ],
     order: [['createdAt', 'DESC']]
   })
