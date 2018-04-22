@@ -272,7 +272,7 @@ router.get('/reactions', function(req, res, next) {
   Reaction.findAll({
     include: [
       { model: User, },
-      { model: Event }
+      { model: Event, where: {eventlatitude: {[Op.between]: [6, 10]}} }
     ],
     order: [['createdAt', 'DESC']]
   })
@@ -281,6 +281,8 @@ router.get('/reactions', function(req, res, next) {
       success: true,
       reactions: reactions
     })
+    console.log("UPDATED REACTIONS");
+    console.log(reactions);
   })
   .catch(function(error) {
     console.log('there was an error loading events', error);
@@ -292,7 +294,7 @@ router.get('/reactions/:id', function(req, res, next) {
     where: {userid: req.params.id},
     include: [
       { model: User, },
-      { model: Event, where: {eventlatitude: {[Op.between]: [6, 10]}} }
+      { model: Event }
     ],
     order: [['createdAt', 'DESC']]
   })
