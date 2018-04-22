@@ -272,11 +272,13 @@ router.get('/events', function(req, res, next) {
 });
 
 router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
+  var lat = Math.floor(req.params.lat);
+  var lon = Math.floor(req.params.lon);
   var radius = req.params.radius;
-  var latLowerBound = Math.floor(req.params.lat - radius);
-  var latUpperBound = Math.floor(req.params.lat + radius);
-  var lonLowerBound = Math.floor(req.params.lon - radius);
-  var lonUpperBound = Math.floor(req.params.lon + radius);
+  var latLowerBound = lat - radius;
+  var latUpperBound = lat + radius;
+  var lonLowerBound = lon - radius;
+  var lonUpperBound = lon + radius;
   console.log(latLowerBound);
   console.log(latUpperBound);
   console.log(lonLowerBound);
