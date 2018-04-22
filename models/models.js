@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 // var sequelize = new Sequelize('PostgressEvents', 'aws_postgres', 'dirgni1!!A', {
 //   dialect: 'postgres',
 //   host: 'postgres-eventsapp.cppczcupjsh9.us-east-1.rds.amazonaws.com'

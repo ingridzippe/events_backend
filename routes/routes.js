@@ -11,6 +11,8 @@ var User = require('../models/models.js').User;
 var Reaction = require('../models/models.js').Reaction;
 var Peoplelike = require('../models/models.js').Peoplelike;
 var Update = require('../models/models.js').Update;
+
+const Op = Sequelize.Op;
 // var mongoose = require('mongoose');
 
 const S3_BUCKET = process.env.S3_BUCKET;
@@ -272,7 +274,7 @@ router.get('/reactions', function(req, res, next) {
   Reaction.findAll({
     include: [
       { model: User, },
-      { model: Event, where: {eventlatitude: 8} }
+      { model: Event, where: {eventlatitude: {[Op.between]: [6, 10]}} }
     ],
     order: [['createdAt', 'DESC']]
   })
