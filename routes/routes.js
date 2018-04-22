@@ -271,11 +271,21 @@ router.get('/events', function(req, res, next) {
   })
 });
 
-router.get('/reactions', function(req, res, next) {
+router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
+  var radius = req.params.radius;
+  var latLowerBound = req.params.lat - radius;
+  var latUpperBound = req.params.lat + radius;
+  var lonLowerBound = req.params.lon - radius;
+  var lonUpperBound = req.params.lat + radius;
   Reaction.findAll({
     include: [
       { model: User, },
-      { model: Event, where: {eventlatitude: {[Op.between]: [6, 10]}} }
+      { model: Event,
+        where: {
+          eventlatitude: {[Op.between]: [latLowerBound, latUpperBound]},
+          eventlongitude: {[Op.between]: [lonLowerBound, lonUpperBound]},
+        },
+      }
     ],
     order: [['createdAt', 'DESC']]
   })
