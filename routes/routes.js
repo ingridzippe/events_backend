@@ -271,6 +271,26 @@ router.get('/events', function(req, res, next) {
   })
 });
 
+// Reactions route generic
+router.get('/reactions', function(req, res, next) {
+  Reaction.findAll({
+    include: [
+      { model: User },
+      { model: Event },
+    ],
+    order: [['createdAt', 'DESC']]
+  })
+  .then(function(reactions) {
+    res.json({
+      success: true,
+      reactions: reactions
+    })
+  })
+  .catch(function(error) {
+    console.log('there was an error loading events', error);
+  })
+});
+
 router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
   var lat = Math.floor(req.params.lat);
   var lon = Math.floor(req.params.lon);
