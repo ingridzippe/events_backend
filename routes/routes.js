@@ -271,9 +271,8 @@ router.get('/events', function(req, res, next) {
   })
 });
 
-// Reactions route generic
+// reactions route generic
 router.get('/reactions', function(req, res, next) {
-  console.log("HELLO 2 HELLO 2 HELLO 2 HELLO")
   Reaction.findAll({
     include: [
       { model: User },
@@ -309,7 +308,7 @@ router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
   var day = d.getDate();
   var dOneYearLater = new Date(year + 1, month, day);
   console.log("NOW NOW NOW NOW NOW NOW NOW NOW NOW NOW");
-  console.log(now);
+  console.log(d);
   Reaction.findAll({
     include: [
       { model: User, },
