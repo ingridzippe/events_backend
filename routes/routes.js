@@ -305,7 +305,7 @@ router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
   var year = d.getFullYear();
   var month = d.getMonth();
   var day = d.getDate();
-  var dOneYearLater = new Date(year + 1, month, day)
+  var dOneYearLater = new Date(year + 1, month, day);
   console.log(now);
   Reaction.findAll({
     include: [
@@ -314,7 +314,7 @@ router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
         where: {
           eventlatitude: {[Op.between]: [latLowerBound, latUpperBound]},
           eventlongitude: {[Op.between]: [lonLowerBound, lonUpperBound]},
-          eventdate: { $gt: dOneYearLater },
+          eventdate: { isAfter: new Date() },
         },
       }
     ],
