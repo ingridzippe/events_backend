@@ -273,6 +273,7 @@ router.get('/events', function(req, res, next) {
 
 // Reactions route generic
 router.get('/reactions', function(req, res, next) {
+  console.log("HELLO 2 HELLO 2 HELLO 2 HELLO")
   Reaction.findAll({
     include: [
       { model: User },
