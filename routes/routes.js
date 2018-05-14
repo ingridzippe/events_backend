@@ -314,7 +314,7 @@ router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
         where: {
           eventlatitude: {[Op.between]: [latLowerBound, latUpperBound]},
           eventlongitude: {[Op.between]: [lonLowerBound, lonUpperBound]},
-          eventdate: {[Op.between]: [d, dOneYearLater]},
+          eventdate: { $lt: dOneYearLater },
         },
       }
     ],
