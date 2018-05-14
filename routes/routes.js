@@ -292,6 +292,7 @@ router.get('/reactions', function(req, res, next) {
 });
 
 router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
+  console.log("HELLO HELLO HELLO HELLO")
   var lat = Math.floor(req.params.lat);
   var lon = Math.floor(req.params.lon);
   var radius = Math.floor(req.params.radius);
@@ -306,6 +307,7 @@ router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
   var month = d.getMonth();
   var day = d.getDate();
   var dOneYearLater = new Date(year + 1, month, day);
+  console.log("NOW NOW NOW NOW NOW NOW NOW NOW NOW NOW");
   console.log(now);
   Reaction.findAll({
     include: [
@@ -314,7 +316,7 @@ router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
         where: {
           eventlatitude: {[Op.between]: [latLowerBound, latUpperBound]},
           eventlongitude: {[Op.between]: [lonLowerBound, lonUpperBound]},
-          eventdate: { isAfter: new Date() },
+          eventdate: { gt: d },
         },
       }
     ],
