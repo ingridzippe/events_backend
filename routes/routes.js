@@ -299,10 +299,14 @@ router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
   var latUpperBound = lat + radius;
   var lonLowerBound = lon - radius;
   var lonUpperBound = lon + radius;
-  console.log(latLowerBound);
-  console.log(latUpperBound);
-  console.log(lonLowerBound);
-  console.log(lonUpperBound);
+  // get today's date
+  var d = new Date();
+  // add a year to today's date
+  var year = d.getFullYear();
+  var month = d.getMonth();
+  var day = d.getDate();
+  var dOneYearLater = new Date(year + 1, month, day)
+  console.log(now);
   Reaction.findAll({
     include: [
       { model: User, },
@@ -310,6 +314,7 @@ router.get('/reactions/:lat/:lon/:radius', function(req, res, next) {
         where: {
           eventlatitude: {[Op.between]: [latLowerBound, latUpperBound]},
           eventlongitude: {[Op.between]: [lonLowerBound, lonUpperBound]},
+          eventdate: {[Op.between]: [d, dOneYearLater]},
         },
       }
     ],
