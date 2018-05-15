@@ -110,6 +110,8 @@ router.get('/getlikes/:id', function(req, res, next) {
 
 
 router.post('/recordlatandlong', function(req, res, next) {
+  console.log("req.body.latitude")
+  console.log(req.body.latitude)
   User.update({
     latitude: req.body.latitude,
     longitude: req.body.longitude,
